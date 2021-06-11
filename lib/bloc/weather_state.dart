@@ -1,16 +1,22 @@
 part of 'weather_bloc.dart';
 
 @immutable
-abstract class WeatherState {
+abstract class WeatherState extends Equatable {
   const WeatherState();
 }
 
 class WeatherInitial extends WeatherState {
   const WeatherInitial();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class WeatherLoading extends WeatherState {
   const WeatherLoading();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class WeatherLoaded extends WeatherState {
@@ -18,14 +24,7 @@ class WeatherLoaded extends WeatherState {
   const WeatherLoaded(this.weather);
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is WeatherLoaded && o.weather == weather;
-  }
-
-  @override
-  int get hashCode => weather.hashCode;
+  List<Object?> get props => [weather];
 }
 
 class WeatherError extends WeatherState {
@@ -33,12 +32,5 @@ class WeatherError extends WeatherState {
   const WeatherError(this.message);
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is WeatherError && o.message == message;
-  }
-
-  @override
-  int get hashCode => message.hashCode;
+  List<Object?> get props => [message];
 }
