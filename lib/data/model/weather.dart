@@ -1,23 +1,14 @@
-import 'package:meta/meta.dart';
+import 'package:equatable/equatable.dart';
 
-class Weather {
+class Weather extends Equatable {
   final String cityName;
   final double temperatureCelsius;
 
   Weather({
-    @required this.cityName,
-    @required this.temperatureCelsius,
+    required this.cityName,
+    required this.temperatureCelsius,
   });
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is Weather &&
-        o.cityName == cityName &&
-        o.temperatureCelsius == temperatureCelsius;
-  }
-
-  @override
-  int get hashCode => cityName.hashCode ^ temperatureCelsius.hashCode;
+  List<Object?> get props => [cityName, temperatureCelsius];
 }
